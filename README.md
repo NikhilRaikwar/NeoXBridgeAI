@@ -390,7 +390,7 @@ This software is provided "as is", without warranty of any kind. Always verify t
 
 **🌟 Star this repository if you found it helpful!**
 
-[Report Bug](https://github.com/NikhilRaikwar/NeoXBridge-AI/issues) · [Request Feature](https://github.com/NikhilRaikwar/NeoXBridge-AI/issues) · [Join Discord](https://discord.gg/neo)
+[Report Bug](https://github.com/NikhilRaikwar/NeoXBridgeAI/issues) · [Request Feature](https://github.com/NikhilRaikwar/NeoXBridgeAI/issues) 
 
 Made with ❤️ for the Neo Community
 
