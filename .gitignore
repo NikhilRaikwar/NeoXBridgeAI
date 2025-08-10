@@ -117,25 +117,6 @@ session_data/
 backup/
 exports/
 
-# NeoXBridge AI specific
-# Spoon framework directories (not used in this project)
-spoon-*/
-
-# Additional README files (keep only main README.md)
-*_SUMMARY.md
-README_*.md
-!README.md
-
-# Test result files
-test_results*
-*.json
-!requirements.txt
-
-# Wallet and blockchain data
-wallet_data/
-private_keys/
-
-# Demo and test scripts (if not needed)
-# Uncomment to ignore:
-# demo_*.py
-# test_*.py
+# Spoon AI directories
+spoon-core-main/
+spoon-toolkit-main/

@@ -1,43 +1,54 @@
-# 🚀 NeoXBridge AI
+# 🌉 NeoXBridge AI - Comprehensive Blockchain Assistant
 
-**Advanced Conversational AI Assistant for Neo Blockchain Operations**
+**Advanced Neo N3 Blockchain Agent with AI-Powered Security Analysis**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-green.svg)](https://openai.com/)
-[![Neo Blockchain](https://img.shields.io/badge/Neo-N3-brightgreen.svg)](https://neo.org/)
+[![Neo N3](https://img.shields.io/badge/Neo-N3-brightgreen.svg)](https://neo.org/)
+[![GoPlusLabs](https://img.shields.io/badge/Security-GoPlusLabs-red.svg)](https://gopluslabs.io/)
 
-> 🌟 **Transform complex blockchain operations into natural conversations with cutting-edge AI technology**
+> The most comprehensive Neo blockchain assistant with advanced security analysis, wallet management, and AI-powered operations.
 
-NeoXBridge AI is a sophisticated conversational interface that bridges the gap between human language and Neo blockchain operations. Built with advanced AI capabilities, it enables users to interact with the Neo N3 blockchain through natural language commands, making cryptocurrency operations accessible to everyone.
+## ✨ Features
 
-## ✨ Key Features
+### 🧠 **Advanced AI Agent**
+- **Intelligent Intent Recognition**: Natural language understanding for blockchain operations
+- **Context-Aware Responses**: Maintains conversation state and user preferences
+- **Comprehensive Help System**: Built-in guidance for all features
+- **Session Management**: Track your interaction history and patterns
 
-### 🧠 **Advanced AI Integration**
-- **GPT-4 Powered**: Leverages OpenAI's most advanced language model
-- **Natural Language Understanding**: Process complex blockchain requests in plain English
-- **Context-Aware Conversations**: Maintains conversation history and user context
-- **Intelligent Error Recovery**: Provides helpful suggestions when operations fail
+### 🔐 **Wallet Management**
+- **Private Key Import**: Support for WIF and HEX formats
+- **Address Validation**: Neo N3 address format verification
+- **Balance Checking**: Real-time NEO/GAS balance queries
+- **Transaction History**: Complete wallet activity tracking
 
-### 🔐 **Enterprise-Grade Security**
-- **Multi-Layer Validation**: Comprehensive address and transaction verification
-- **GoPlus Labs Integration**: Real-time security analysis and threat detection
-- **Transaction Confirmation**: Multi-step verification process for all operations
-- **Safe Demo Mode**: Test functionality without real blockchain transactions
-- **Private Key Management**: Secure wallet setup with multiple authentication options
+### 🛡️ **Multi-Layer Security**
+- **GoPlusLabs Integration**: Advanced malicious address detection
+- **Token Security Analysis**: Comprehensive smart contract analysis
+- **Phishing Protection**: Website and dApp security verification
+- **Transaction Preview**: Review all operations before execution
 
-### ⚡ **Comprehensive Blockchain Operations**
-- **Multi-Asset Support**: Handle NEO, GAS, and all Neo N3 compatible tokens
-- **Real-Time Balance Queries**: Instant wallet balance checking across all assets
-- **Smart Transaction Management**: Preview, simulate, and execute transactions
-- **Address Validation**: Verify Neo N3 address format and legitimacy
-- **Transaction Tracking**: Monitor transaction status and confirmation
+### 💰 **Blockchain Operations**
+- **Neo N3 API Integration**: Complete blockchain data access
+- **Asset Management**: NEP-17 tokens and NEP-11 NFTs support
+- **Transaction Sending**: Secure NEO/GAS transfers with confirmation
+- **Real-time Data**: Current block height, transaction counts, and more
 
-### 🎨 **Superior User Experience**
-- **Intuitive CLI Interface**: Beautiful console interface with rich formatting
-- **Interactive Demos**: Comprehensive demonstration scenarios
-- **Session Analytics**: Track usage patterns and operation statistics
-- **Comprehensive Help System**: Built-in guidance and examples
+### 📈 **Price Monitoring**
+- **Price Alerts**: Create custom alerts for NEO, GAS, and other assets
+- **Alert Management**: View and manage active price alerts
+- **Multi-Asset Support**: Monitor various cryptocurrency prices
+
+### 🎨 **NFT Operations**
+- **NFT Collection Viewing**: Display owned NEP-11 tokens
+- **Contract Analysis**: Group NFTs by collection/contract
+- **Comprehensive Stats**: Total counts and collection breakdowns
+
+### 🏛️ **Governance Features**
+- **Committee Information**: Neo governance committee details
+- **Candidate Tracking**: Monitor governance candidates
+- **Voting Information**: Access to Neo's governance system
 
 ## 🚦 Quick Start
 
@@ -52,8 +63,8 @@ NeoXBridge AI is a sophisticated conversational interface that bridges the gap b
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/NeoXBridgeAI.git
-   cd NeoXBridgeAI
+   git clone https://github.com/NikhilRaikwar/NeoXBridge-AI.git
+   cd NeoXBridge-AI
    ```
 
 2. **Install Dependencies**
@@ -87,63 +98,121 @@ NeoXBridge AI is a sophisticated conversational interface that bridges the gap b
 
 5. **Run the Application**
    ```bash
-   # Full interactive application
-   python main.py
-   
-   # Quick demo
-   python demo.py
-   
-   # Complete end-to-end use case demonstration
-   python end_to_end_demo.py
+   # Run the comprehensive NeoXBridge AI agent
+   python neoxbridge_comprehensive_agent.py
    ```
 
 ## 🎯 Usage Examples
 
-### Basic Commands
+### Wallet Management
 
 ```
-💬 You: Help
-🤖 NeoXBridge AI: [Shows available commands and features]
+💬 You: load wallet <private_key>
+🤖 NeoXBridge AI: ✅ Wallet Loaded Successfully!
+                📍 Address: NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N
+                💼 Network: testnet
+                🔐 Status: Ready for operations
 
-💬 You: Check balance for NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N
-🤖 NeoXBridge AI: [Returns current NEO, GAS, and token balances]
+💬 You: check my balance
+🤖 NeoXBridge AI: 💰 Balance for NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N
+                🔸 NEO: 150.0
+                🔸 GAS: 85.42
+```
 
-💬 You: Is this address safe: NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
-🤖 NeoXBridge AI: [Provides security analysis using GoPlus Labs]
+### Security Analysis
 
-💬 You: Send 10 NEO to NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
-🤖 NeoXBridge AI: [Initiates secure transfer with confirmation steps]
+```
+💬 You: security check NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
+🤖 NeoXBridge AI: 🛡️ Security Analysis - SAFE
+                ✅ Target: NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
+                🔸 Type: address
+                🔸 Risk Level: low
+                🔸 Confidence: 95.0%
+```
+
+### Transaction Operations
+
+```
+💬 You: send 5 NEO to NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
+🤖 NeoXBridge AI: 💸 Transaction Preview
+                📤 From: NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N
+                📥 To: NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c
+                💰 Amount: 5 NEO
+                🛡️ Security Status: ✅ SAFE
+```
+
+### Price Monitoring
+
+```
+💬 You: create price alert NEO above 50
+🤖 NeoXBridge AI: 🚨 Price Alert Created
+                🔸 Symbol: NEO
+                🔸 Condition: above $50
+                🔸 Status: Active
 ```
 
 ### Natural Language Queries
 
 ```
-💬 You: What's my wallet balance?
-💬 You: I want to transfer some tokens to my friend
-💬 You: Is this smart contract legitimate?
-💬 You: Show me my transaction history
-💬 You: How much GAS do I have?
+💬 You: What's the current block height?
+💬 You: Show me my NFT collection
+💬 You: How many committee members are there?
+💬 You: Is this token contract safe?
+💬 You: Check recent blocks
 ```
+
+## 📚 Command Reference
+
+Here are the key commands available in NeoXBridge AI:
+
+### 💼 Wallet Operations
+- `load wallet PRIVATE_KEY` - Import your wallet
+- `wallet status` - Check wallet status
+- `check my balance` - View NEO/GAS balances
+
+### 🛡️ Security Commands
+- `security check ADDRESS` - Analyze address safety
+- `analyze token CONTRACT` - Token security analysis
+- `security check URL` - Website safety check
+
+### 💸 Transaction Commands
+- `send AMOUNT ASSET to ADDRESS` - Transfer tokens
+- `transfer 5 NEO to ADDRESS` - Send NEO
+- `pay 10.5 GAS to ADDRESS` - Send GAS
+
+### 📊 Blockchain Data
+- `block height` - Current blockchain height
+- `recent blocks` - Recent block information
+- `asset count` - Total assets on network
+
+### 📈 Price Monitoring
+- `create price alert SYMBOL above/below PRICE` - Create alerts
+- `check my alerts` - View active alerts
+
+### 🎨 NFT Operations
+- `my nfts` - View your NFT collection
+- `nfts for ADDRESS` - Check NFTs for address
+
+### 🏛️ Governance
+- `committee info` - Neo committee details
+- `candidate count` - Total candidates
 
 ## 🏗️ Project Structure
 
 ```
 NeoXBridge-AI/
-├── 📁 src/
-│   ├── 🧠 agent.py          # Main AI agent logic
-│   ├── 🔧 tools.py          # Blockchain operation tools
-│   ├── 💬 llm_client.py     # OpenAI integration
-│   ├── 📝 prompts.py        # AI system prompts
-│   ├── ⚙️ config.py         # Configuration management
-│   ├── 🎨 ui.py             # User interface utilities
-│   └── 📦 __init__.py       # Package initialization
-├── 📄 main.py               # Main application entry point
-├── 🎮 demo.py               # Interactive demo script
-├── 🎬 end_to_end_demo.py    # Complete use case demonstration
-├── 📋 requirements.txt      # Python dependencies
-├── ⚙️ .env.example          # Environment template
-├── 🛡️ .gitignore            # Git ignore file
-└── 📖 README.md             # This file
+├── 🤖 neoxbridge_comprehensive_agent.py  # Main comprehensive AI agent
+├── 🔧 neo_blockchain_tools.py           # Neo N3 blockchain operations
+├── 🛡️ security_and_analysis_tools.py   # Security and analysis suite
+├── ⚙️ config.yaml                       # Configuration file
+├── 📋 requirements.txt                  # Python dependencies
+├── 📋 requirements_comprehensive.txt    # Full dependencies list
+├── 🗂️ spoon-core-main/                 # Spoon AI framework (optional)
+├── 🗂️ spoon-toolkit-main/              # Spoon toolkits (optional)
+├── ⚙️ .env.example                      # Environment template
+├── 🛡️ .gitignore                       # Git ignore file
+├── 📜 LICENSE                           # MIT License
+└── 📖 README.md                         # This file
 ```
 
 ## ⚙️ Configuration
@@ -190,6 +259,26 @@ NeoXBridge-AI/
 - Start with small amounts when testing new features
 - Enable two-factor authentication on all related accounts
 
+## 🎨 Features in Detail
+
+### Conversational AI
+- **GPT-4 Integration**: Advanced natural language understanding
+- **Context Awareness**: Maintains conversation state and user preferences
+- **Error Recovery**: Intelligent handling of invalid requests with helpful suggestions
+- **Multi-turn Conversations**: Complex operations through natural dialog
+
+### Blockchain Integration
+- **Neo N3 Compatible**: Full support for Neo's latest blockchain version
+- **Multi-Asset Support**: Handle NEO, GAS, and various N3 tokens
+- **Real-time Data**: Up-to-date blockchain information and transaction status
+- **Transaction Simulation**: Preview operations before execution
+
+### User Experience
+- **Beautiful CLI Interface**: Rich console output with emojis and formatting
+- **Session Management**: Track usage statistics and conversation history
+- **Help System**: Comprehensive guidance and example commands
+- **Error Handling**: Clear error messages with actionable solutions
+
 ## 🔧 Development
 
 ### Running in Development Mode
@@ -199,42 +288,66 @@ NeoXBridge-AI/
 pip install -r requirements.txt
 
 # Set development environment
-export DEMO_MODE=true
-export LOG_LEVEL=DEBUG
+set DEMO_MODE=true
+set LOG_LEVEL=DEBUG
 
-# Run with hot reload (if using nodemon equivalent)
-python main.py
+# Run the comprehensive agent
+python neoxbridge_comprehensive_agent.py
 ```
 
 ### Project Architecture
 
-The application follows a modular architecture:
+The application follows a comprehensive modular architecture:
 
-1. **Agent Layer** (`agent.py`): Core AI logic and intent processing
-2. **Tools Layer** (`tools.py`): Blockchain operation implementations
-3. **LLM Layer** (`llm_client.py`): AI model integration and prompt handling
-4. **Config Layer** (`config.py`): Environment and application configuration
-5. **UI Layer** (`ui.py`): User interface and interaction management
+1. **Main Agent** (`neoxbridge_comprehensive_agent.py`): Complete AI agent with all features
+2. **Blockchain Tools** (`neo_blockchain_tools.py`): Neo N3 API integration and wallet management
+3. **Security Suite** (`security_and_analysis_tools.py`): GoPlusLabs integration and security analysis
+4. **Configuration** (`config.yaml`): Application settings and configuration
+5. **Environment** (`.env`): Sensitive API keys and environment variables
 
 ### Adding New Features
 
 1. **New Blockchain Operation**:
-   - Add function to `tools.py`
-   - Update intent classification in `agent.py`
-   - Add corresponding prompts in `prompts.py`
+   - Add function to `neo_blockchain_tools.py`
+   - Update intent classification in `neoxbridge_comprehensive_agent.py`
+   - Add corresponding handler method
 
-2. **New AI Capabilities**:
-   - Extend system prompts in `prompts.py`
-   - Update the agent logic in `agent.py`
-   - Add any required tools in `tools.py`
+2. **New Security Feature**:
+   - Extend `security_and_analysis_tools.py`
+   - Update security suite in main agent
+   - Add new security check methods
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+### Ways to Contribute
+- 🐛 **Bug Reports**: Found an issue? Let us know!
+- 💡 **Feature Requests**: Have an idea? Share it!
+- 🔧 **Code Contributions**: Submit pull requests
+- 📖 **Documentation**: Improve guides and examples
+- 🧪 **Testing**: Help test new features and edge cases
+
+### Development Guidelines
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Code Style
+- Follow PEP 8 Python style guidelines
+- Add type hints for better code clarity
+- Include docstrings for all functions and classes
+- Write comprehensive tests for new features
 
 ## 📊 Roadmap
 
-### Version 1.1 (Next Release)
-- [ ] **Enhanced Wallet Integration**: Support for multiple wallet types
-- [ ] **Transaction History**: Complete transaction tracking and analysis
-- [ ] **DeFi Operations**: Support for Neo N3 DeFi protocols
-- [ ] **Web Interface**: Browser-based GUI alongside CLI
+### Version 1.1 (Coming Soon)
+- [ ] **Web Interface**: Browser-based GUI
+- [ ] **Transaction History**: Complete transaction tracking
+- [ ] **Multi-Wallet Support**: Manage multiple addresses
+- [ ] **Custom Token Support**: Add any Neo N3 token
 
 ### Version 1.2 (Future)
 - [ ] **Mobile App**: iOS and Android applications
@@ -242,9 +355,30 @@ The application follows a modular architecture:
 - [ ] **DeFi Integration**: Swap, stake, and yield farming
 - [ ] **NFT Support**: Neo N3 NFT operations
 
+### Version 2.0 (Vision)
+- [ ] **Multi-Chain Support**: Ethereum, Binance Smart Chain
+- [ ] **AI Trading Assistant**: Automated trading strategies
+- [ ] **Social Features**: Share insights and collaborate
+- [ ] **Enterprise Features**: Team management and compliance
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Nikhil Raikwar**
+- GitHub: [@NikhilRaikwar](https://github.com/NikhilRaikwar)
+- Twitter: [@NikhilRaikwar](https://twitter.com/NikhilRaikwarr)
+- LinkedIn: [Nikhil Raikwar](https://linkedin.com/in/nikhilraikwar16)
+
+## 🙏 Acknowledgments
+
+- **Neo Foundation** for the amazing blockchain platform
+- **OpenAI** for providing GPT-4 capabilities
+- **GoPlus Labs** for security infrastructure
+- **Neo Community** for inspiration and support
+- **Open Source Community** for tools and libraries
 
 ## ⚠️ Disclaimer
 
@@ -255,6 +389,8 @@ This software is provided "as is", without warranty of any kind. Always verify t
 <div align="center">
 
 **🌟 Star this repository if you found it helpful!**
+
+[Report Bug](https://github.com/NikhilRaikwar/NeoXBridge-AI/issues) · [Request Feature](https://github.com/NikhilRaikwar/NeoXBridge-AI/issues) · [Join Discord](https://discord.gg/neo)
 
 Made with ❤️ for the Neo Community
 
