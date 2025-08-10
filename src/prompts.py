@@ -127,6 +127,16 @@ def _format_balance_response(context: Dict[str, Any]) -> str:
     
     if result["success"]:
         balances = result["balances"]
+        data_source = result.get("data_source", "unknown")
+        
+        # Prepare data source indicator
+        source_indicator = ""
+        if data_source == "neo_rpc":
+            source_indicator = "\n🌐 **Data Source:** Real-time Neo RPC data"
+        elif data_source == "demo_data":
+            source_indicator = "\n🎭 **Data Source:** Demo data (for testing purposes)"
+            if "note" in result:
+                source_indicator += f"\n💡 {result['note']}"
         
         if any(float(balance) > 0 for balance in balances.values()):
             balance_lines = []
@@ -139,14 +149,14 @@ def _format_balance_response(context: Dict[str, Any]) -> str:
 
 🔍 Address: `{address}`
 📊 Current Balances:
-{balance_str}
+{balance_str}{source_indicator}
 
 💡 **Tip:** NEO generates GAS over time. GAS is used for transaction fees.
 
 Need to do anything else? I can help you:
-• Send tokens to another address
+• Send tokens to another address (educational simulation)
 • Validate a different address
-• Check transaction history"""
+• Run security checks"""
         
         else:
             return f"""💰 **Balance Information**
@@ -154,12 +164,17 @@ Need to do anything else? I can help you:
 🔍 Address: `{address}`
 📊 Current Balances: 
   • NEO: 0.0
-  • GAS: 0.0
+  • GAS: 0.0{source_indicator}
 
 This address currently has no tokens. To get started:
 • Receive tokens from another address
 • Purchase tokens on an exchange
-• Check if this is the correct address"""
+• Check if this is the correct address
+
+Next steps I can help with:
+• Validate another address
+• Learn about Neo wallets
+• Understand how to get NEO/GAS"""
     
     else:
         return f"""❌ **Balance Check Failed**
@@ -167,7 +182,8 @@ This address currently has no tokens. To get started:
 🔍 Address: `{address}`
 📊 Error: {result["error"]}
 
-Please verify the address is correct and try again."""
+Please verify the address is correct and try again.
+I can help validate the address format if needed."""
 
 
 def _format_transaction_response(context: Dict[str, Any]) -> str:
@@ -175,23 +191,38 @@ def _format_transaction_response(context: Dict[str, Any]) -> str:
     result = context["result"]
     
     if result["success"]:
-        return f"""🚀 **Transaction Successful!**
+        return f"""🎓 **EDUCATIONAL TRANSACTION SIMULATION**
 
+⚠️ **IMPORTANT**: This is a simulated transaction for educational purposes!
+
+📚 **Transaction Details (Simulated):**
 ├─ Asset: {result["asset"]}
 ├─ Amount: {result["amount"]}
 ├─ Recipient: `{result["recipient"]}`
-├─ Transaction Hash: `{result["tx_hash"]}`
-├─ Block Height: {result["block_height"]}
-└─ Status: ✅ {result["status"].upper()}
+├─ Mock TX Hash: `{result["tx_hash"]}`
+└─ Status: 🎭 SIMULATION ONLY
 
-⚡ Your {result["amount"]} {result["asset"]} has been sent successfully!
+🚫 **NO REAL TOKENS WERE SENT** - This was educational guidance!
 
-🎯 **Next Steps:**
-• Save the transaction hash for your records
-• It may take a few minutes to appear in block explorers
-• The recipient will see the tokens once the transaction is confirmed
+🔑 **To Execute Real Transactions, You Need:**
+• Private key access (wallet software like Neon, O3, or neo-express)
+• Real wallet integration with transaction signing
+• Sufficient balance in YOUR actual wallet
+• Network connection to Neo N3 mainnet
 
-Would you like me to check the transaction status or help with anything else?"""
+💡 **This AI provides guidance about:**
+• How transactions work
+• Security best practices  
+• Address validation
+• Balance checking (attempts real data when possible)
+
+🎯 **Ready to try real transactions?**
+Use wallet software like:
+• Neon Wallet (desktop)
+• O3 Wallet (mobile/web)
+• neo-express (development)
+
+Would you like me to explain more about real Neo wallets?"""
     
     elif result.get("security_blocked"):
         return f"""🚨 **SECURITY ALERT - Transaction Blocked**

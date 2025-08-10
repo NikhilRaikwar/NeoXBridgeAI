@@ -12,25 +12,35 @@ from datetime import datetime
 from .tools import NeoXTools
 from .llm_client import LLMClient
 from .prompts import SYSTEM_PROMPT, get_contextual_response
+from .wallet import NeoWallet, validate_private_key, generate_demo_private_key
 
 logger = logging.getLogger(__name__)
 
 
 class NeoXBridgeAgent:
     """
-    NeoXBridge AI Agent - A conversational AI for secure NeoX blockchain operations.
+    NeoXBridge AI Agent - A conversational AI assistant for NeoX blockchain education and guidance.
+    
+    IMPORTANT: This is an educational tool that provides guidance and simulations.
+    For real transactions, you need:
+    - Your private key or wallet integration
+    - Real Neo N3 RPC connections
+    - Proper transaction signing
     
     Features:
     - Natural language understanding for blockchain operations
-    - Security-first transaction processing
-    - GoPlus Labs integration for address validation
+    - Educational transaction simulation and guidance
+    - Real address validation and balance checking
+    - Security best practices education
     - Context-aware conversation management
     """
     
     def __init__(self):
+        self.wallet = NeoWallet()
         self.tools = NeoXTools()
         self.llm_client = None
         self.conversation_history = []
+        self.wallet_initialized = False
         self.context = {
             "last_address": None,
             "pending_transaction": None,
@@ -198,8 +208,15 @@ Respond with ONLY a JSON object in this format:
         """Handle balance check requests."""
         address = params.get("address") or self.context.get("last_address")
         
+        # If no address specified and wallet is loaded, use wallet address
+        if not address and self.is_wallet_ready():
+            address = self.get_wallet_address()
+        
         if not address:
-            return "Please provide a Neo address to check the balance. Example: 'Check balance for NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N'"
+            if self.is_wallet_ready():
+                return "Please provide a Neo address to check the balance, or ask 'What's my balance?' to check your wallet."
+            else:
+                return "Please provide a Neo address to check the balance. Example: 'Check balance for NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N'"
         
         result = await self.tools.get_balance(address)
         
@@ -321,6 +338,57 @@ Keep responses friendly, informative, and focused on blockchain operations.
         
         return "\n".join(context_lines)
     
+    async def setup_wallet(self, private_key: Optional[str] = None) -> Dict[str, Any]:
+        """Setup wallet with private key."""
+        try:
+            if not private_key:
+                # Generate demo key for testing
+                private_key = generate_demo_private_key()
+                
+            # Validate private key
+            validation = validate_private_key(private_key)
+            if not validation["is_valid"]:
+                return {
+                    "success": False,
+                    "error": validation["error"]
+                }
+            
+            # Use the hex key from validation (handles both WIF and hex formats)
+            hex_private_key = validation["hex_key"]
+            
+            # Set up wallet
+            success = self.wallet.set_private_key(hex_private_key)
+            if not success:
+                return {
+                    "success": False,
+                    "error": "Failed to initialize wallet with private key"
+                }
+            
+            # Update context
+            self.wallet_initialized = True
+            self.context["last_address"] = self.wallet.get_address()
+            
+            return {
+                "success": True,
+                "address": self.wallet.get_address(),
+                "message": "Wallet initialized successfully!"
+            }
+            
+        except Exception as e:
+            self.logger.error(f"Wallet setup failed: {e}")
+            return {
+                "success": False,
+                "error": f"Wallet setup failed: {str(e)}"
+            }
+    
+    def is_wallet_ready(self) -> bool:
+        """Check if wallet is ready for operations."""
+        return self.wallet_initialized and self.wallet.is_wallet_loaded()
+    
+    def get_wallet_address(self) -> Optional[str]:
+        """Get the current wallet address."""
+        return self.wallet.get_address() if self.is_wallet_ready() else None
+    
     def get_session_info(self) -> Dict[str, Any]:
         """Get current session information."""
         uptime = datetime.now() - self.context["session_start"]
@@ -328,6 +396,8 @@ Keep responses friendly, informative, and focused on blockchain operations.
         return {
             "session_duration": str(uptime).split('.')[0],
             "messages_processed": len(self.conversation_history) // 2,
+            "wallet_address": self.get_wallet_address(),
+            "wallet_ready": self.is_wallet_ready(),
             "last_address": self.context.get("last_address"),
             "tools_available": len(self.tools.get_available_tools()),
             "status": "active"

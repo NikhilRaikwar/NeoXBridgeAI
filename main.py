@@ -57,6 +57,12 @@ class NeoXBridgeApp:
             self.agent = NeoXBridgeAgent()
             await self.agent.initialize()
             print("✅ NeoXBridge AI initialized successfully!")
+            
+            # Setup wallet
+            wallet_setup = await self.setup_wallet()
+            if not wallet_setup:
+                return False
+                
             return True
         except Exception as e:
             print_error(f"Failed to initialize NeoXBridge AI: {e}")
@@ -79,6 +85,79 @@ class NeoXBridgeApp:
             return True, self._get_examples_message()
         
         return False, ""
+    
+    async def setup_wallet(self) -> bool:
+        """Setup wallet with private key input."""
+        try:
+            print("\n🔐 WALLET SETUP REQUIRED")
+            print("=" * 50)
+            print("To use NeoXBridge AI, you need to provide a Neo private key.")
+            print("This enables the AI to:")
+            print("• Check your actual wallet balance")
+            print("• Derive your Neo address automatically")
+            print("• Sign transactions on your behalf")
+            print("\n⚠️  SECURITY WARNING:")
+            print("• Never share your private key with anyone")
+            print("• Only use private keys you control")
+            print("• For testing, consider using a separate wallet")
+            
+            print("\n🎯 OPTIONS:")
+            print("1. Enter your existing Neo private key")
+            print("2. Generate a demo private key for testing")
+            print("3. Skip wallet setup (limited functionality)")
+            
+            while True:
+                choice = input("\n💭 Choose option (1-3): ").strip()
+                
+                if choice == "1":
+                    private_key = input("\n🔑 Enter your Neo private key (WIF or hex format): ").strip()
+                    if not private_key:
+                        print("❌ Private key cannot be empty. Please try again.")
+                        continue
+                    
+                    wallet_address = input("🏠 Enter your wallet address (to ensure correct mapping): ").strip()
+                    if not wallet_address:
+                        print("❌ Wallet address cannot be empty. Please try again.")
+                        continue
+                        
+                elif choice == "2":
+                    from src.wallet import generate_demo_private_key
+                    private_key = generate_demo_private_key()
+                    print(f"\n🎲 Generated demo private key: {private_key}")
+                    print("⚠️  WARNING: This is for testing only! Do not send real funds to this wallet.")
+                    
+                elif choice == "3":
+                    print("\n⚠️  Skipping wallet setup. Some features will be limited.")
+                    return True
+                    
+                else:
+                    print("❌ Invalid choice. Please enter 1, 2, or 3.")
+                    continue
+                
+                # Setup wallet with private key
+                print("\n🔄 Setting up wallet...")
+                setup_result = await self.agent.setup_wallet(private_key)
+                
+                if setup_result["success"]:
+                    print(f"\n✅ {setup_result['message']}")
+                    print(f"📍 Your wallet address: {setup_result['address']}")
+                    
+                    # Show initial balance
+                    print("\n💰 Checking initial balance...")
+                    return True
+                else:
+                    print(f"\n❌ Wallet setup failed: {setup_result['error']}")
+                    retry = input("\n🔄 Would you like to try again? (y/n): ").strip().lower()
+                    if retry != 'y':
+                        return False
+                    continue
+                    
+        except KeyboardInterrupt:
+            print("\n\n🛑 Wallet setup cancelled by user.")
+            return False
+        except Exception as e:
+            print_error(f"Wallet setup error: {e}")
+            return False
     
     def _get_help_message(self) -> str:
         """Get help message."""

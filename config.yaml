@@ -1,0 +1,207 @@
+# NeoXBridge AI - Comprehensive Configuration
+# Configuration file for the comprehensive blockchain agent
+
+# ===== Agent Settings =====
+agent:
+  name: "NeoXBridge AI"
+  version: "1.0.0"
+  description: "Comprehensive Neo blockchain assistant with advanced capabilities"
+  default_network: "testnet"  # testnet or mainnet
+  max_conversation_history: 1000
+  response_timeout_seconds: 30
+
+# ===== Neo Blockchain Settings =====
+neo:
+  mainnet:
+    rpc_url: "https://mainnet1.neo.coz.io:443"
+    explorer_api: "https://explorer.onegate.space/api"
+    network_magic: 860833102
+  testnet:
+    rpc_url: "https://testnet1.neo.coz.io:40332"
+    explorer_api: "https://testmagnet.explorer.onegate.space/api" 
+    network_magic: 894710606
+  
+  # Contract hashes (mainnet)
+  contracts:
+    neo: "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5"
+    gas: "0xd2a4cff31913016155e38e474a2c06d08be276cf"
+
+# ===== Security Settings =====
+security:
+  goplus_labs:
+    api_url: "https://api.gopluslabs.io"
+    rate_limit_per_minute: 60
+    timeout_seconds: 15
+    
+  address_validation:
+    enable_format_check: true
+    enable_network_validation: true
+    enable_malicious_check: true
+    
+  transaction_limits:
+    max_neo_amount: 1000
+    max_gas_amount: 10000
+    require_confirmation_above_neo: 100
+    require_confirmation_above_gas: 1000
+
+# ===== Price Monitoring =====
+price_monitoring:
+  coingecko:
+    api_url: "https://api.coingecko.com/api/v3"
+    rate_limit_per_minute: 50
+    cache_duration_seconds: 60
+    
+  alerts:
+    max_active_alerts: 50
+    check_interval_seconds: 300
+    notification_methods: ["console", "log"]
+
+# ===== API Integrations =====
+apis:
+  chainbase:
+    base_url: "https://api.chainbase.online/v1"
+    supported_chains: ["ethereum", "bsc", "polygon"]
+    
+  thirdweb:
+    base_url: "https://api.thirdweb.com"
+    
+  desearch:
+    base_url: "https://api.desearch.ai"
+
+# ===== Social Media =====
+social_media:
+  discord:
+    enabled: false
+    token: ""  # Set via environment variable
+    guild_id: ""
+    
+  telegram:
+    enabled: false
+    token: ""  # Set via environment variable
+    
+  twitter:
+    enabled: false
+    api_key: ""  # Set via environment variable
+    api_secret: ""  # Set via environment variable
+
+# ===== Storage Settings =====
+storage:
+  local:
+    data_directory: "./data"
+    logs_directory: "./logs"
+    cache_directory: "./cache"
+    
+  cloud:
+    s3:
+      enabled: false
+      bucket_name: ""
+      region: "us-east-1"
+      
+    ipfs:
+      enabled: false
+      gateway_url: "https://gateway.pinata.cloud"
+
+# ===== Logging Configuration =====
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+      
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "logs/neoxbridge.log"
+      max_bytes: 10485760  # 10MB
+      backup_count: 5
+      
+    structured:
+      enabled: false
+      format: "json"
+
+# ===== Performance Settings =====
+performance:
+  async_timeout_seconds: 30
+  max_concurrent_requests: 10
+  connection_pool_size: 20
+  request_retry_count: 3
+  
+  caching:
+    enabled: true
+    ttl_seconds: 300
+    max_entries: 1000
+
+# ===== Demo Data =====
+demo_data:
+  enabled: true
+  balances:
+    "NVByrj4w4W6mtXj7Lhqu9tqgZ7ApQb4UG3":
+      NEO: "5.0"
+      GAS: "10.25"
+    "NiEtVMWVYgpXrWkRTMwRaMJtJ41gD3912N":
+      NEO: "150.0" 
+      GAS: "85.42"
+    "NhGomKyZgSuYUGqrXHcpv1bNH9ntwvfm4c":
+      NEO: "25.0"
+      GAS: "12.87"
+
+# ===== Features =====
+features:
+  wallet_management: true
+  balance_checking: true
+  security_analysis: true
+  nft_operations: true
+  price_monitoring: true
+  transaction_analysis: true
+  governance_info: true
+  blockchain_data: true
+  
+  advanced:
+    ai_integration: false
+    machine_learning: false
+    predictive_analytics: false
+    automated_trading: false
+
+# ===== Environment Variables =====
+# These should be set in .env file, not here
+environment_variables:
+  required:
+    - "PRIVATE_KEY"  # Neo wallet private key (optional)
+    
+  optional:
+    - "GOPLUS_API_KEY"          # GoPlusLabs security API
+    - "OPENAI_API_KEY"          # OpenAI API key
+    - "ANTHROPIC_API_KEY"       # Anthropic Claude API
+    - "GOOGLE_API_KEY"          # Google Gemini API
+    - "DISCORD_TOKEN"           # Discord bot token
+    - "TELEGRAM_TOKEN"          # Telegram bot token
+    - "TWITTER_API_KEY"         # Twitter API credentials
+    - "AWS_ACCESS_KEY_ID"       # AWS credentials
+    - "AWS_SECRET_ACCESS_KEY"   # AWS credentials
+
+# ===== UI Settings =====
+ui:
+  terminal:
+    use_colors: true
+    use_emojis: true
+    prompt_symbol: "💬"
+    
+  web:
+    enabled: false
+    host: "localhost"
+    port: 8000
+    cors_origins: ["http://localhost:3000"]
+
+# ===== Development Settings =====
+development:
+  debug_mode: false
+  hot_reload: false
+  profiling: false
+  
+  testing:
+    mock_external_apis: false
+    use_test_data: false
+    skip_network_calls: false

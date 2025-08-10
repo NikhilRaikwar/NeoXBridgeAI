@@ -124,6 +124,7 @@ class NeoXTools:
     async def get_balance(self, address: str) -> Dict[str, Any]:
         """
         Get NEO and GAS balance for an address.
+        First tries real RPC call, falls back to demo data if RPC fails.
         
         Args:
             address (str): The Neo address to check
@@ -140,19 +141,24 @@ class NeoXTools:
                 return {
                     "success": False,
                     "error": "Invalid address format",
-                    "balances": {}
+                    "balances": {},
+                    "data_source": "validation_error"
                 }
             
-            # Simulate network call
-            await asyncio.sleep(0.2)
+            # Try real RPC call first
+            real_balance = await self._fetch_real_balance(address)
+            if real_balance["success"]:
+                return real_balance
             
-            # Get mock balance data
+            # Fall back to demo data with clear indication
             balances = self.mock_balances.get(address, {"NEO": "0.0", "GAS": "0.0"})
             
             return {
                 "success": True,
                 "address": address,
                 "balances": balances,
+                "data_source": "demo_data",
+                "note": "This is demo data. For real balances, ensure proper RPC configuration.",
                 "timestamp": asyncio.get_event_loop().time()
             }
             
@@ -161,12 +167,19 @@ class NeoXTools:
             return {
                 "success": False,
                 "error": f"Failed to retrieve balance: {str(e)}",
-                "balances": {}
+                "balances": {},
+                "data_source": "error"
             }
     
     async def send_transaction(self, to_address: str, amount: float, asset: str = "NEO") -> Dict[str, Any]:
         """
-        Send NEO or GAS tokens (simulation for demo).
+        EDUCATIONAL TRANSACTION SIMULATION - NOT REAL TRANSACTIONS!
+        
+        This function provides educational guidance about transactions.
+        To execute real transactions, you need:
+        - Private key access
+        - Wallet integration (like neo-express, O3, or Neon)
+        - Proper transaction signing
         
         Args:
             to_address (str): Recipient address
@@ -174,7 +187,7 @@ class NeoXTools:
             asset (str): Asset type (NEO or GAS)
             
         Returns:
-            dict: Transaction result
+            dict: Educational simulation result with guidance
         """
         try:
             self.logger.info(f"Sending {amount} {asset} to {to_address}")
@@ -352,4 +365,81 @@ class NeoXTools:
                 "risk_level": "unknown",
                 "confidence": 0.0,
                 "source": "error"
+            }
+    
+    async def _fetch_real_balance(self, address: str) -> Dict[str, Any]:
+        """
+        Attempt to fetch real balance from Neo RPC.
+        
+        Args:
+            address (str): Neo address to check
+            
+        Returns:
+            dict: Balance result or failure info
+        """
+        try:
+            if not self.session:
+                return {"success": False, "error": "No HTTP session"}
+            
+            # Neo N3 RPC call for NEO balance
+            neo_payload = {
+                "jsonrpc": "2.0",
+                "method": "getnep17balances",
+                "params": [address],
+                "id": 1
+            }
+            
+            async with self.session.post(
+                self.rpc_url,
+                json=neo_payload,
+                timeout=aiohttp.ClientTimeout(total=10)
+            ) as response:
+                if response.status != 200:
+                    return {
+                        "success": False, 
+                        "error": f"RPC error: HTTP {response.status}"
+                    }
+                
+                data = await response.json()
+                
+                if "error" in data:
+                    return {
+                        "success": False,
+                        "error": f"RPC error: {data['error']['message']}"
+                    }
+                
+                # Process the balance data
+                balances = {"NEO": "0.0", "GAS": "0.0"}
+                
+                if "result" in data and "balance" in data["result"]:
+                    for balance_info in data["result"]["balance"]:
+                        asset_hash = balance_info.get("assethash")
+                        amount = balance_info.get("amount", "0")
+                        
+                        # NEO token hash
+                        if asset_hash == "0xef4073a0f2b305a38ec4050e4d3d28bc40ea63f5":
+                            balances["NEO"] = str(int(amount) / 100000000)  # NEO decimals
+                        # GAS token hash  
+                        elif asset_hash == "0xd2a4cff31913016155e38e474a2c06d08be276cf":
+                            balances["GAS"] = str(int(amount) / 100000000)  # GAS decimals
+                
+                return {
+                    "success": True,
+                    "address": address,
+                    "balances": balances,
+                    "data_source": "neo_rpc",
+                    "rpc_url": self.rpc_url,
+                    "timestamp": asyncio.get_event_loop().time()
+                }
+                
+        except asyncio.TimeoutError:
+            return {
+                "success": False,
+                "error": "RPC request timed out"
+            }
+        except Exception as e:
+            self.logger.debug(f"Real balance fetch failed: {e}")
+            return {
+                "success": False,
+                "error": f"RPC connection failed: {str(e)}"
             }
